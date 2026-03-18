@@ -3,58 +3,43 @@ const maybeBtn = document.getElementById("maybe");
 const noBtn = document.getElementById("no");
 const result = document.getElementById("result");
 
-// 🧠 STORE ORIGINAL POSITION
-let originalLeft = noBtn.offsetLeft;
-let originalTop = noBtn.offsetTop;
+// 😈 Move NO button (SMALL RANGE FIX)
+function moveNoButton() {
+  const range = 120; // 🔥 control how far it can move
 
-// YES CLICK → HUG + RESET NO BUTTON
-yesBtn.onclick = () => {
-  result.innerHTML = `
-    <img src="https://media.giphy.com/media/l2QDM9Jnim1YVILXa/giphy.gif" width="200"><br>
-    🤗 Awwwww... Sending you a BIG HUG! 💖
-  `;
-  createHearts();
-  resetNoButton();
-};
+  const currentX = noBtn.offsetLeft;
+  const currentY = noBtn.offsetTop;
 
-// MAYBE CLICK → SAD CAT + CHOCOLATE
-maybeBtn.onclick = () => {
-  result.innerHTML = `
-    <img src="https://media.giphy.com/media/ROF8OQvDmxytW/giphy.gif" width="200"><br>
-    🐱 Feeling a little sad... <br>
-    ❤️ But, Maybe is better than 'No' 😄 <br>
-    Take this chocolate 🍫
-  `;
-  
-  resetNoButton();
-};
+  let newX = currentX + (Math.random() * range - range / 2);
+  let newY = currentY + (Math.random() * range - range / 2);
 
-// NO BUTTON ESCAPE 😈
-noBtn.onmouseover = () => {
-  const x = Math.random() * (window.innerWidth - 100);
-  const y = Math.random() * (window.innerHeight - 50);
+  // 🛑 Keep inside screen
+  newX = Math.max(0, Math.min(window.innerWidth - 100, newX));
+  newY = Math.max(0, Math.min(window.innerHeight - 50, newY));
 
-  noBtn.style.left = x + "px";
-  noBtn.style.top = y + "px";
+  noBtn.style.left = newX + "px";
+  noBtn.style.top = newY + "px";
 }
-// 💻 Laptop (mouse hover)
+
+// 💻 Desktop support
 noBtn.addEventListener("mouseover", moveNoButton);
 
-// 📱 Mobile (touch)
+// 📱 Mobile support
 noBtn.addEventListener("touchstart", (e) => {
   e.preventDefault();
   moveNoButton();
 });
-// 🔄 RESET FUNCTION
+
+// 🔄 Reset NO button
 function resetNoButton() {
-  noBtn.style.left = originalLeft + "px";
-  noBtn.style.top = originalTop + "px";
+  noBtn.style.left = "calc(50% + 110px)";
+  noBtn.style.top = "50%";
 }
 
-// 💖 FLOATING HEARTS
+// 💖 Floating hearts
 function createHearts() {
   for (let i = 0; i < 20; i++) {
-    let heart = document.createElement("div");
+    const heart = document.createElement("div");
     heart.className = "heart";
     heart.innerHTML = "💖";
 
@@ -63,8 +48,32 @@ function createHearts() {
 
     document.body.appendChild(heart);
 
-    setTimeout(() => {
-      heart.remove();
-    }, 4000);
+    setTimeout(() => heart.remove(), 4000);
   }
 }
+
+// ✅ YES → Hug
+yesBtn.onclick = () => {
+  result.innerHTML = `
+    <img src="https://media.giphy.com/media/l2QDM9Jnim1YVILXa/giphy.gif" width="200"><br>
+    🤗 Sending you a BIG HUG! 💖
+  `;
+  createHearts();
+  resetNoButton();
+};
+
+// 🤔 MAYBE → Sad cat + chocolate
+maybeBtn.onclick = () => {
+  result.innerHTML = `
+    <img src="https://media.giphy.com/media/ROF8OQvDmxytW/giphy.gif" width="200"><br>
+    🐱 Feeling a little sad...<br>
+    🍫 Maybe is better than 'No' 😄<br>
+    Take this chocolate ❤️
+  `;
+  resetNoButton();
+};
+
+// ❌ NO fallback (if somehow clicked)
+noBtn.onclick = () => {
+  moveNoButton();
+};
