@@ -5,7 +5,7 @@ const result = document.getElementById("result");
 
 // 😈 Move NO button (SMALL RANGE FIX)
 function moveNoButton() {
-  const range = 120; // 🔥 control how far it can move
+  const range = 300; // 🔥 control how far it can move
 
   const currentX = noBtn.offsetLeft;
   const currentY = noBtn.offsetTop;
