@@ -41,8 +41,10 @@ noBtn.onmouseover = () => {
 noBtn.addEventListener("mouseover", moveNoButton);
 
 // 📱 Mobile (touch)
-noBtn.addEventListener("touchstart", moveNoButton);
-
+noBtn.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  moveNoButton();
+});
 // 🔄 RESET FUNCTION
 function resetNoButton() {
   noBtn.style.left = originalLeft + "px";
