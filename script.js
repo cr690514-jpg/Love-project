@@ -56,7 +56,7 @@ function createHearts() {
 yesBtn.onclick = () => {
   result.innerHTML = `
     <img src="https://media.giphy.com/media/l2QDM9Jnim1YVILXa/giphy.gif" width="200"><br>
-    🤗 Sending you a BIG HUG! 💖
+    🤗Awwwww.. Sending you a BIG HUG! 💖
   `;
   createHearts();
   resetNoButton();
@@ -67,8 +67,8 @@ maybeBtn.onclick = () => {
   result.innerHTML = `
     <img src="https://media.giphy.com/media/ROF8OQvDmxytW/giphy.gif" width="200"><br>
     🐱 Feeling a little sad...<br>
-    🍫 Maybe is better than 'No' 😄<br>
-    Take this chocolate ❤️
+    ❤️ Maybe is better than 'No' 😄<br>
+    Take this chocolate 🍫
   `;
   resetNoButton();
 };
