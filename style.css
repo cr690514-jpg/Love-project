@@ -37,38 +37,44 @@ h1 {
   transform: scale(1.3) rotate(10deg);
 }
 
+/* ✅ FIXED BUTTON LAYOUT */
 .buttons {
   display: flex;
   justify-content: center;
-  flex-wrap: nowrap; /* 🔥 prevents wrapping */
+  align-items: center;
   gap: 10px;
+  position: relative; /* important for NO button */
 }
 
+/* Common button style */
 .buttons button {
-  padding: 12px 20px;
-  margin: 10px;
+  padding: 12px 18px;
   border-radius: 20px;
   border: none;
-  font-size: 16px;
+  font-size: 15px;
   cursor: pointer;
   transition: 0.3s;
+  white-space: nowrap; /* 🔥 prevents text breaking */
 }
 
 #yes { background: #00ff9f; }
 #maybe { background: #ffd700; }
 
+/* 😈 NO button (initially aligned) */
 #no {
   background: #ff4d4d;
   position: absolute;
-  left: 50%;
-  top: 65%;
-  transform: translate(-50%, -50%);
+  left: calc(50% + 110px); /* place next to others */
+  top: 50%;
+  transform: translateY(-50%);
 }
 
+/* Hover effect */
 .buttons button:hover {
-  transform: scale(1.2);
+  transform: scale(1.15);
 }
 
+/* Result */
 #result {
   margin-top: 25px;
   font-size: 22px;
