@@ -40,7 +40,8 @@ h1 {
 .buttons {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* 🔥 prevents wrapping */
+  gap: 10px;
 }
 
 .buttons button {
