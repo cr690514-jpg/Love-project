@@ -22,8 +22,8 @@ maybeBtn.onclick = () => {
   result.innerHTML = `
     <img src="https://media.giphy.com/media/ROF8OQvDmxytW/giphy.gif" width="200"><br>
     🐱 Feeling a little sad... <br>
-    🍫 But, Maybe is better than 'No' 😄 <br>
-    Take this chocolate ❤️
+    ❤️ But, Maybe is better than 'No' 😄 <br>
+    Take this chocolate 🍫
   `;
   
   resetNoButton();
@@ -36,7 +36,12 @@ noBtn.onmouseover = () => {
 
   noBtn.style.left = x + "px";
   noBtn.style.top = y + "px";
-};
+}
+// 💻 Laptop (mouse hover)
+noBtn.addEventListener("mouseover", moveNoButton);
+
+// 📱 Mobile (touch)
+noBtn.addEventListener("touchstart", moveNoButton);
 
 // 🔄 RESET FUNCTION
 function resetNoButton() {
